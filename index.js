@@ -3,7 +3,8 @@ const app = express();
 const helmet = require('helmet');
 const cors = require('cors');
 
-// const db= require(/)
+const db = require('.connect');
+// const models = require ('./models');
 const userControllers = require('./controllers/usersControllers');
 const productsControllers = require('./controllers/productsControllers');
 const ordersControllers = require('./controllers/ordersControllers');
