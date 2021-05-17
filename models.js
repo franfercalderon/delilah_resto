@@ -11,11 +11,11 @@ User.init({
         autoIncrement: true,
         primaryKey: true
     },
-    username: DataTypes.STRING,
-    fullname: DataTypes.STRING,
+    userName: DataTypes.STRING,
+    fullName: DataTypes.STRING,
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
-    address: DataTypes.STRING,
+    adress: DataTypes.STRING,
     password: DataTypes.STRING,
     isAdmin: DataTypes.BOOLEAN
 },  {
@@ -23,3 +23,71 @@ User.init({
     modelName: 'User'
 });
 
+class Product extends Model {}
+
+Product.init({
+    id:{
+        type:DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    name: DataTypes.STRING,
+    description: DataTypes.STRING,
+    price: DataTypes.INTEGER,
+    imgUrl: DataTypes.STRING,
+    stock: DataTypes.FLOAT
+},  {
+    sequelize,
+    modelName: 'Product'
+});
+
+class Order extends Model {}
+
+Order.init({
+    idOrder:{
+        type:DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    idUser: DataTypes.INTEGER,
+    userName: DataTypes.STRING,
+    payment: DataTypes.STRING,
+    orderTotal: DataTypes.INTEGER,
+    idStatus: DataTypes.INTEGER
+},  {
+    sequelize,
+    modelName:'Order'
+});
+
+class OrderInfo extends Model { }
+
+OrderInfo.init({
+    idOrder: {
+        type:DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    idProduct: DataTypes.INTEGER,
+    productQuantity: DataTypes.INTEGER,
+    productPrice: DataTypes.INTEGER
+},  {
+    sequelize,
+    modelName: 'OrderInfo'
+});
+
+class OrderStatus extends model { }
+
+OrderStatus.init({
+    id: {
+        type:DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    status: DataTypes.STRING,
+
+},  {
+    sequelize,
+    modelName: 'OrderStatus'
+});
+
+module.exports = {User, Product, Order, OrderInfo, OrderStatus};
