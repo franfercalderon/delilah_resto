@@ -75,7 +75,7 @@ OrderInfo.init({
     modelName: 'OrderInfo'
 });
 
-class OrderStatus extends model { }
+class OrderStatus extends Model { }
 
 OrderStatus.init({
     id: {
