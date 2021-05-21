@@ -3,6 +3,7 @@ const { User } = require('../models');
 const router = express.Router();
 const models = require ('../models');
 const {loginValidation, signupValidation, jwtValidation} = require('../middlewares');
+// const e = require('express');
 
 //CREACION DE NUEVO USUARIO
 
@@ -66,13 +67,50 @@ router.post('/', signupValidation, async (req, res)=>{
         }
     })
 
-    //MODIFICA USUARIO EXISTENTE
+    //MODIFICA USUARIO. ADMIN PUEDE MODIFICAR TODOS LOS USUARIOS, NOT ADMIN SOLO A SI MISMO. 
 
     .put('/:username', jwtValidation, async (req, res)=>{
         const searchedUser= req.params.username;
         if(req.userData.user == searchedUser){
-            
+            const updatedUser= await models.User.update(req.body, {
+                where: {userName : searchedUser}
+            })
+            if(updatedUser>0) return res.status(200).json({message: 'Updated successfully'})
+            res.status(400).json({message:`User "${searchedUser}" not found`})
         } 
+        else{
+            if(req.userData.admin == true){
+                const updatedUser= await models.User.update(req.body, {
+                    where: {userName : searchedUser}
+                })
+                if(updatedUser>0){
+                    return res.status(200).json({message: 'Updated successfully'})
+                }
+                else{
+                    res.status(400).json({message:`User "${searchedUser}" not found`}) 
+                }
+            }
+            else return res.status(401).json({message:`Denied. You are no authorized to see "${searchedUser}" user.`})
+        }
+    })
+
+    //BORRAR USUARIO. SOLO ADMIN
+
+    .delete('/:username', jwtValidation, async (req, res) =>{
+        const searchedUser= req.params.username;
+        if(req.userData.admin==true){
+            const deletedUser = await models.User.destroy({
+                where: {userName: searchedUser}
+            })
+            console.log(deletedUser);
+            if(deletedUser>0){
+                return res.status(200).json({message: `User "${searchedUser}" was deleted!`})
+            }
+            else return res.status(400).json({message: `User "${searchedUser}" was not found!`})
+        }
+        else{
+            return res.status(401).json({message:`Denied. You are no authorized to this operation.`})
+        }
     })
 
 

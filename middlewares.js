@@ -75,16 +75,10 @@ const loginValidation = async (req, res, next) => {
 
 const jwtValidation = (req, res, next)=>{
     const tokenCode = req.headers.authorization.split(' ')[1];
-    console.log(tokenCode);
-    console.log(jwtKey);
     jwt.verify(tokenCode, jwtKey, (err, decoded)=>{
         if(err){
             res.send('Denied. You are no authorized')
-            console.log('error maldito')
         }
-        console.log('pasaste maldito')
-        console.log('lo que viene es decoded')
-        console.log(decoded);
         req.userData = decoded;
         next();
     })
@@ -116,16 +110,24 @@ const userValidation = async (email, password) => {
 //GENERACION DE NUEVO TOKEN
 
 function newToken (username, isAdmin){
-    // console.log(username)
     const payload = {
         user: username,
         admin: isAdmin
     }
     const token = jwt.sign(payload, jwtKey);
-    // console.log(payload);
-    // console.log(token);
-    // console.log(jwtKey);
     return token
 };
 
-module.exports = {loginValidation, signupValidation, jwtValidation}
+//VALIDACION DATOS NUEVO PRODUCTO
+
+const productValidation = (req, res, next) => {
+    const{name, description, price, stock} = req.body;
+    if (!name || !description || !price || !stock){
+        res.status(400).json({
+            error: 'Mandatory fields are missing'
+        })
+    }
+    next();
+}
+
+module.exports = {loginValidation, signupValidation, jwtValidation, productValidation}
