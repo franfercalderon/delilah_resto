@@ -3,7 +3,6 @@ const { User } = require('../models');
 const router = express.Router();
 const models = require ('../models');
 const {loginValidation, signupValidation, jwtValidation} = require('../middlewares');
-// const e = require('express');
 
 //CREACION DE NUEVO USUARIO
 
@@ -102,7 +101,6 @@ router.post('/', signupValidation, async (req, res)=>{
             const deletedUser = await models.User.destroy({
                 where: {userName: searchedUser}
             })
-            console.log(deletedUser);
             if(deletedUser>0){
                 return res.status(200).json({message: `User "${searchedUser}" was deleted!`})
             }

@@ -1,5 +1,4 @@
 const express = require('express');
-const { Product } = require('../models');
 const router = express.Router();
 const models = require ('../models');
 const {jwtValidation, productValidation} = require('../middlewares');
@@ -29,6 +28,8 @@ router.post('/',productValidation, jwtValidation, async (req, res)=>{
 
     .get('/', jwtValidation, async (req, res)=>{
         if(req.userData.admin == true){
+            const res = 1+5/3;
+            console.log(res);
             const products = await models.Product.findAll();
             if(products.length>0) return res.status(200).json(products);
             return res.status(400).json({message: 'There are no products to show'})
@@ -48,6 +49,32 @@ router.post('/',productValidation, jwtValidation, async (req, res)=>{
             return res.status(400).json({message:'Product not found.'})
         }
         else return res.send({message: 'Denied. You are no authorized'})
+    })
+
+    .put('/:id', jwtValidation, async (req, res)=>{
+        if (req.userData.admin == true){
+            const id = req.params.id;
+            const updatedProduct = await models.Product.update(req.body, {
+                where:{id: id}
+            });
+            if(updatedProduct>0){
+                return res.status(200).json({message: 'Updated successfully'})
+            }
+            else return res.status(400).json({message:`Product with id "${id}" was not found`})
+        }
+        else return res.status(401).json({message:`Denied. You are no authorized to edit products.`})
+    })
+
+    .delete('/:id', jwtValidation, async (req, res)=>{
+        if (req.userData.admin == true){
+            const id = req.params.id;
+            const deleteProduct = await models.Product.destroy({
+                where: {id: id}
+            });
+            if(deleteProduct>0)return res.status(200).json({message: `Product was deleted!`})
+            return res.status(400).json({message: `Product was not found.`})
+        }
+        else return res.status(401).json({message:`Denied. You are no authorized to this operation.`})
     })
 
 

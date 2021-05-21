@@ -118,6 +118,7 @@ function newToken (username, isAdmin){
     return token
 };
 
+
 //VALIDACION DATOS NUEVO PRODUCTO
 
 const productValidation = (req, res, next) => {
@@ -129,5 +130,6 @@ const productValidation = (req, res, next) => {
     }
     next();
 }
+
 
 module.exports = {loginValidation, signupValidation, jwtValidation, productValidation}

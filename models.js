@@ -67,7 +67,7 @@ OrderInfo.init({
         autoIncrement: true,
         primaryKey: true
     },
-    idProduct: DataTypes.INTEGER,
+    productName: DataTypes.STRING,
     productQuantity: DataTypes.INTEGER,
     productPrice: DataTypes.INTEGER
 },  {

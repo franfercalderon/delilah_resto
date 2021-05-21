@@ -106,17 +106,3 @@ router.post('/products', async(req, res)=>{
 
 
 module.exports = router;
-
-
-// id:{
-//     type: DataTypes.INTEGER,
-//     autoIncrement: true,
-//     primaryKey: true
-// },
-// userName: DataTypes.STRING,
-// fullName: DataTypes.STRING,
-// email: DataTypes.STRING,
-// phone: DataTypes.STRING,
-// adress: DataTypes.STRING,
-// password: DataTypes.STRING,
-// isAdmin: DataTypes.BOOLEAN
