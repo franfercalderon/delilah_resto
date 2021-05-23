@@ -29,7 +29,6 @@ router.post('/', jwtValidation, async (req, res)=>{
                     productName: product.name,
                     productQuantity: productQuantity[i],
                     productPrice: product.price
-
                 }
                 await models.OrderInfo.create(newDetail)
             }

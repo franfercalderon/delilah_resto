@@ -1,0 +1,488 @@
+---
+openapi: 3.0.0
+info:
+  title: Delilah Resto
+  description: REST API para sitio de pedidos de comidas
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/franfercalderon/delilah/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://localhost:3000
+  description: ServidorLocal
+tags:
+- name: Users
+  description: CRUD de usuarios
+- name: Products
+  description: CRUD de productos
+- name: Orders
+  description: CRUD de pedidos
+paths:
+  /users:
+    get:
+      tags:
+      - Users
+      summary: Obtener listado de usuarios.
+      description: Obtener listado de usuarios (Admin) Obtener informacion del usuario (not Admin)
+      responses:
+        "200":
+          description: Operacion exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        "400":
+          description: No se encontraron usuarios registrados.
+      security: []
+    post:
+      tags:
+      - Users
+      summary: Crear nuevo usuario.
+      description: Crea nuevo usuario en la base de datos.
+      requestBody:
+        description: Crear nuevo usuario.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: Usuario creado.
+        "400":
+          description: Error al crear el usuario.
+  /users/{id}:
+    get:
+      tags:
+      - Users
+      summary: Obtener usuario por id
+      description: Obtener usuario por id
+      parameters:
+      - name: id
+        in: path
+        description: id del usuario a buscar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        "400":
+          description: No se encontró un usuario con ese id.
+        "401":
+          description: No estás autorizado para esta operación.
+      security: []
+    put:
+      tags:
+      - Users
+      summary: Editar usuario por id
+      description: Editar user por id (Admin)
+      parameters:
+      - name: id
+        in: path
+        description: id del usuario a editar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Actualización de datos
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: Usuario actualizado.
+        "400":
+          description: No se encontró un usuario con ese id.
+        "401":
+          description: No estás autorizado para esta operación.
+      security: []
+    delete:
+      tags:
+      - Users
+      summary: Eliminar usuario por id
+      description: Elimina usuario (Admin)
+      parameters:
+      - name: id
+        in: path
+        description: id del usuario a eliminar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Usuario eliminado.
+        "400":
+          description: No se encontró un usuario con ese id.
+        "401":
+          description: No estás autorizado para esta operación.
+      security: []
+  /users/login:
+    post:
+      tags:
+      - Users
+      summary: Login de usuarios
+      description: Login para obtener token
+      requestBody:
+        description: Crea objeto de login
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+        required: true
+      responses:
+        "200":
+          description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        "400":
+          description: Faltan campos
+        "401":
+          description: Correo o contraseña inválidos
+      security: []
+  /products:
+    get:
+      tags:
+      - Products
+      summary: Obtener listado de todos los productos.
+      description: Obtener listado de todos los productos
+      responses:
+        "200":
+          description: Operacion exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        "400":
+          description: No se encontraron productos.
+    post:
+      tags:
+      - Products
+      summary: Crear nuevo producto.
+      description: Crear nuevo producto (Admin)
+      requestBody:
+        description: Producto a crear
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInfo'
+        required: true
+      responses:
+        "200":
+          description: Operacion exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "400":
+          description: No se pudo crear el producto.
+      security: []
+  /products/{id}:
+    put:
+      tags:
+      - Products
+      summary: Editar producto por id
+      description: Editar producto por id (Admin)
+      parameters:
+      - name: id
+        in: path
+        description: id del producto a editar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: datos a editar
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInfo'
+        required: true
+      responses:
+        "200":
+          description: Producto actualizado.
+        "400":
+          description: No se encontró un producto con ese id.
+        "401":
+          description: No estás autorizado para esta operación.
+      security: []
+    delete:
+      tags:
+      - Products
+      summary: Eliminar producto por id
+      description: Eliminar producto por id (Admin)
+      parameters:
+      - name: id
+        in: path
+        description: id del producto a editar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Producto eliminado.
+        "400":
+          description: No se encontró un producto con ese id.
+        "401":
+          description: No estás autorizado para esta operación.
+      security: []
+  /orders:
+    get:
+      tags:
+      - Orders
+      summary: Listado de pedidos
+      description: Listado de los pedidos propios (not Admin). Listado de todos los pedidos (Admin)
+      responses:
+        "200":
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        "400":
+          description: No hay pedidos registrados.
+    post:
+      tags:
+      - Orders
+      summary: Crear pedido nuevo
+      description: Agregar pedido a base de datos
+      requestBody:
+        description: Nuevo pedido
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOrder'
+        required: true
+      responses:
+        "200":
+          description: Pedido creado
+        "400":
+          description: Error al crear el pedido
+  /orders/{id}:
+    put:
+      tags:
+      - Orders
+      summary: Editar pedido existente
+      description: Editar pedido (Admin). Al enviar PUT se actualiza el estado de la orden al siguiente. Si recibe body con ID de estado, se actualiza a ese ID.
+      parameters:
+      - name: id
+        in: path
+        description: id del pedido a actualizar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        description: ID del estado del pedido
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      responses:
+        "200":
+          description: Pedido actualizado
+        "201":
+          description: El pedido está finalizado
+        "400":
+          description: No se pudo actualizar el pedido
+        "401":
+          description: No estás autorizado para esta operación
+    delete:
+      tags:
+      - Orders
+      summary: Eliminar pedido por id
+      description: Eliminar pedido (Admin)
+      parameters:
+      - name: id
+        in: path
+        description: id del pedido a eliminar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Pedido eliminado
+        "400":
+          description: No se encontró el pedido
+        "401":
+          description: No estás autorizado
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          example: laurafoodie
+        name:
+          type: string
+          example: Laura
+        lastname:
+          type: string
+          example: Alonso
+        email:
+          type: string
+          example: laura@foodie.com
+        phone:
+          type: integer
+          example: 5491130989090
+        adress:
+          type: string
+          example: 908 Foodie St.
+        password:
+          type: string
+          example: MyPass456!
+        isAsdmin:
+          type: boolean
+          example: false
+    UserInfo:
+      type: array
+      items:
+        $ref: '#/components/schemas/UserInfo_inner'
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+          example: laura@foodie.com
+        password:
+          type: string
+          example: MyPass456!
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkZyYW5jbyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYxOTU3MzE1NX0.7RFZcGB29QQFt14drbjL-OQwFiCq18m4_luqNVSVA-A
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        name:
+          type: string
+          example: Green Cheese Hamburger
+        description:
+          type: string
+          example: Hamburguesa de hongos con queso vegano
+        photo:
+          type: string
+          example: https://www.thespruceeats.com/vegan-mushroom-bean-burger.jpeg
+        stock:
+          type: integer
+          example: 32
+        favourite:
+          type: boolean
+          example: true
+        price:
+          type: integer
+          example: 499
+    ProductInfo:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Green Cheese Hamburger
+        description:
+          type: string
+          example: Hamburguesa de hongos con queso vegano
+        photo:
+          type: string
+          example: https://www.thespruceeats.com/vegan-mushroom-bean-burger.jpeg
+        stock:
+          type: integer
+          example: 32
+        favourite:
+          type: boolean
+          example: true
+        price:
+          type: integer
+          example: 499
+    Products:
+      type: array
+      items:
+        $ref: '#/components/schemas/Product'
+    Order:
+      type: object
+      properties:
+        id_order:
+          type: integer
+          example: 234
+        id_user:
+          type: integer
+          example: 12
+        user_name:
+          type: string
+          example: Laura
+        payment:
+          type: string
+          example: Cash
+        order_total:
+          type: integer
+          example: 899
+        id_status:
+          type: integer
+          example: 2
+    NewOrder:
+      type: object
+      properties:
+        id_product:
+          type: array
+          items:
+            example: 3, 12, 9
+        quantity:
+          type: array
+          items:
+            example: 1,2,1
+        payment:
+          type: string
+          example: Credit Card
+    UserInfo_inner:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        username:
+          type: string
+          example: laurafoodie
+        name:
+          type: string
+          example: Laura
+        lastname:
+          type: string
+          example: Alonso
+        email:
+          type: string
+          example: laura@foodie.com
+        phone:
+          type: integer
+          example: 5491130989090
+        adress:
+          type: string
+          example: 908 Foodie St.
+        password:
+          type: string
+          example: MyPass456!
+        isAsdmin:
+          type: boolean
+          example: false

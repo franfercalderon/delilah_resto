@@ -40,9 +40,3 @@ db.init()
     });
 
 
-
-models.Order.hasMany(models.OrderInfo)
-models.OrderInfo.belongsTo(models.Order) 
-
-models.OrderStatus.hasMany(models.Order)
-models.Order.belongsTo(models.OrderStatus)

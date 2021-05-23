@@ -28,8 +28,6 @@ router.post('/',productValidation, jwtValidation, async (req, res)=>{
 
     .get('/', jwtValidation, async (req, res)=>{
         if(req.userData.admin == true){
-            const res = 1+5/3;
-            console.log(res);
             const products = await models.Product.findAll();
             if(products.length>0) return res.status(200).json(products);
             return res.status(400).json({message: 'There are no products to show'})

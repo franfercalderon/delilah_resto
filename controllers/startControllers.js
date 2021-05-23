@@ -74,6 +74,8 @@ router.post('/products', async(req, res)=>{
         res.status(200).json({message:'Starting users created!'})
     })
 
+    //POST PARA CREAR STATUS INICIALES (UNO ADMIN Y OTRO NO)
+
     .post('/status', async(req, res)=>{
         const startStatus=[
             {
