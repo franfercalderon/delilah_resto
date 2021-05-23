@@ -3,6 +3,8 @@ const { User, OrderStatus } = require('../models');
 const router = express.Router();
 const models = require ('../models');
 
+//POST PARA CREAR PRODUCTOS INICIALES
+
 router.post('/products', async(req, res)=>{
     const startProducts= [
         {
@@ -41,6 +43,8 @@ router.post('/products', async(req, res)=>{
     res.status(200).json({message:'Starting products created!'});
 
     })
+
+    //POST PARA CREAR USUARIOS INICIALES (UNO ADMIN Y OTRO NO)
 
     .post('/users', async (req, res)=>{
         const startUsers=[

@@ -39,3 +39,10 @@ db.init()
         console.log('Error connecting with DB', err);
     });
 
+
+
+models.Order.hasMany(models.OrderInfo)
+models.OrderInfo.belongsTo(models.Order) 
+
+models.OrderStatus.hasMany(models.Order)
+models.Order.belongsTo(models.OrderStatus)

@@ -126,7 +126,7 @@ router.post('/', jwtValidation, async (req, res)=>{
     })
 
     //ELIMINAR ORDEN. SOLO ADMIN 
-    
+
     .delete('/:id', jwtValidation, async (req, res)=>{
         if(req.userData.admin==true){
             const id = req.params.id;
@@ -140,44 +140,5 @@ router.post('/', jwtValidation, async (req, res)=>{
         }
         else return res.send({message: 'Denied. You are no authorized'})
     })
-
-
-
-
-
-
-    // Order.init({
-    //     idOrder:{
-    //         type:DataTypes.INTEGER,
-    //         autoIncrement: true,
-    //         primaryKey: true
-    //     },
-    //     idUser: DataTypes.INTEGER,
-    //     userName: DataTypes.STRING,
-    //     payment: DataTypes.STRING,
-    //     orderTotal: DataTypes.INTEGER,
-    //     idStatus: DataTypes.INTEGER
-
-    // OrderInfo.init({
-    //     idOrder: {
-    //         type:DataTypes.INTEGER,
-    //         autoIncrement: true,
-    //         primaryKey: true
-    //     },
-    //     productName: DataTypes.String,
-    //     productQuantity: DataTypes.INTEGER,
-    //     productPrice: DataTypes.INTEGER
-
-    // Product.init({
-    //     id:{
-    //         type:DataTypes.INTEGER,
-    //         autoIncrement: true,
-    //         primaryKey: true
-    //     },
-    //     name: DataTypes.STRING,
-    //     description: DataTypes.STRING,
-    //     price: DataTypes.INTEGER,
-    //     imgUrl: DataTypes.STRING,
-    //     stock: DataTypes.FLOAT
 
 module.exports = router;
