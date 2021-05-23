@@ -37,6 +37,8 @@ router.post('/',productValidation, jwtValidation, async (req, res)=>{
         else return res.send({message: 'Denied. You are no authorized'})
     })
 
+    //OBTENER PRODUCTO POR ID. SOLO ADMIN
+
     .get('/:id', jwtValidation, async (req, res)=>{
         if(req.userData.admin == true){
             const id= req.params.id;
@@ -51,6 +53,8 @@ router.post('/',productValidation, jwtValidation, async (req, res)=>{
         else return res.send({message: 'Denied. You are no authorized'})
     })
 
+    //MODIFICAR PRODUCTOS. SOLO ADMIN
+
     .put('/:id', jwtValidation, async (req, res)=>{
         if (req.userData.admin == true){
             const id = req.params.id;
@@ -64,6 +68,8 @@ router.post('/',productValidation, jwtValidation, async (req, res)=>{
         }
         else return res.status(401).json({message:`Denied. You are no authorized to edit products.`})
     })
+
+    //ELIMINAR PRODUCTOS. SOLO ADMIN
 
     .delete('/:id', jwtValidation, async (req, res)=>{
         if (req.userData.admin == true){
