@@ -62,12 +62,12 @@ Order.init({
 class OrderInfo extends Model { }
 
 OrderInfo.init({
-    idOrder: {
+    idOrderInfo: {
         type:DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    productName: DataTypes.STRING,
+    productId: DataTypes.INTEGER,
     productQuantity: DataTypes.INTEGER,
     productPrice: DataTypes.INTEGER
 },  {

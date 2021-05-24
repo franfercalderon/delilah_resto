@@ -26,7 +26,7 @@ router.post('/', jwtValidation, async (req, res)=>{
                     where:{id: idProduct[i]}
                 });
                 const newDetail = {
-                    productName: product.name,
+                    productId: idProduct[i],
                     productQuantity: productQuantity[i],
                     productPrice: product.price
                 }

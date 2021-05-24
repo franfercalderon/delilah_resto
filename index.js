@@ -19,6 +19,16 @@ app.use('/products', productsControllers);
 app.use('/orders', ordersControllers);
 
 
+//RELACIONES TABLAS
+
+models.Order.hasMany(models.OrderInfo)
+models.OrderInfo.belongsTo(models.Order)
+
+models.OrderStatus.hasMany(models.Order)
+models.Order.belongsTo(models.OrderStatus)
+
+models.User.hasMany(models.Order)
+models.Order.belongsTo(models.User)
 
 
 db.init()
@@ -38,5 +48,7 @@ db.init()
     }).catch((err) => {
         console.log('Error connecting with DB', err);
     });
+
+
 
 
