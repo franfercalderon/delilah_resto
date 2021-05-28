@@ -13,6 +13,7 @@ router.post('/', jwtValidation, async (req, res)=>{
         });
         var orderTotal = 0;
         for(let i=0; i<productQuantity.length; i++){
+        
             const product = await models.Product.findOne({
                 where: {id:idProduct[i]}
             })
