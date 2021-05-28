@@ -1,0 +1,697 @@
+{
+	"info": {
+		"_postman_id": "5b3e629d-d706-4f1f-bb54-af51541e14aa",
+		"name": "Delilah",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Start",
+			"item": [
+				{
+					"name": "Start users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/start/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"start",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/start/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"start",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/start/status",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"start",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "New user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"momazo\",\n    \"fullName\": \"Bonzo Fernandez\",\n    \"email\":\"momo@gmail.com\",\n    \"phone\": \"54911089090\",\n    \"adress\":\"Ruta 16 s/n villa del lago, lago puelo\",\n    \"password\": \"ItsMeMomo705.\",\n    \"isAdmin\":\"false\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"momo@gmail.com\",\n    \"password\": \"ItsMeMomo705.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All users list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"Momo Fernandez\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/momazo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"momazo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User by username",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/users/franfer",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"franfer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/users/momazo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"momazo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "See all products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin  franfer",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"polenta\",\n    \"description\": \"con pajaritos\",\n    \"price\": \"999\",\n    \"imgUrl\":\"https://image.jpg\",\n    \"stock\": \"10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener producto por id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/products/16",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"polenta\",\n    \"description\": \"con momitos\",\n    \"price\": \"999\",\n    \"imgUrl\":\"https://image.jpg\",\n    \"stock\": \"10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/products/201",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"201"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto por id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/products/20",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Crear nueva orden",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"idProduct\": [\n    2,3\n  ],\n  \"payment\": \"Credit Card\",\n  \"productQuantity\": [\n    1,1\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/orders/18",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update order by id (no body)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/orders/18",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update order by id (body)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idStatus\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/orders/18",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZnJhbmZlciIsImFkbWluIjp0cnVlLCJpYXQiOjE2MjE0NTQ5MDF9.p1J3IEZoCMBontIW5OdSILciFMcc3jD2UkxH3_nPD1M",
+								"description": "admin franfer",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibW9tYXpvIiwiYWRtaW4iOmZhbHNlLCJpYXQiOjE2MjE0NDkzNDl9.tJZqvlE3yx8mDl1l3tMxD-OB15xYxvD0-Sz9mTcSeWk",
+								"description": "not admin momazo",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/orders/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"orders",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
